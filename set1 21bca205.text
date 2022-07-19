@@ -1,0 +1,165 @@
+sqlite> .mode box
+sqlite> select*from department;
+┌─────────┬───────────┬───────────┐
+│ dept_no │ dept_name │ location  │
+├─────────┼───────────┼───────────┤
+│ 1       │ om        │ delhi     │
+│ 2       │ sai       │ surat     │
+│ 3       │ ram       │ mp        │
+│ 4       │ milan     │ ahamdabad │
+│ 5       │ denish    │ baroda    │
+│ 6       │ surat     │ bardoli   │
+└─────────┴───────────┴───────────┘
+sqlite> select*from employee;
+┌────────┬──────────┬────────┬─────────┬──────────┬─────────────┬────────────┬────────────┬────────────────────────┐
+│ emp_id │ emp_name │ gender │ dept_no │ address  │ designation │   salary   │ experience │         email          │
+├────────┼──────────┼────────┼─────────┼──────────┼─────────────┼────────────┼────────────┼────────────────────────┤
+│ 101    │ om       │ male   │ 1       │ DELHI    │ ca          │ 149381.76  │ bca        │ ommmmmm27674@gmail.com │
+│ 102    │ sai      │ male   │ 2       │ surat    │ mca         │ 1493826.07 │ bac        │ 21bca202@vtcbb.edu.in  │
+│ 103    │ ram      │ male   │ 3       │ mp       │ mba         │ 14937.45   │ bba        │ 21bca203@vtcbb.edu.in  │
+│ 104    │ milan    │ male   │ 4       │ ahmdabad │ mca         │ 149344.25  │ bba        │ 21bca204@vtcbb.edu.in  │
+│ 104    │ milan    │ male   │ 4       │ ahmdabad │ mca         │ 149344.25  │ bba        │ 21bca204@vtcbb.edu.in  │
+│ 105    │ denish   │ male   │ 5       │ baroda   │ fdva        │ 149343.04  │ bbb        │ 21bca205@vtcbb.edu.in  │
+│ 106    │ ujvall   │ male   │ 6       │ bardoli  │ fva         │ 1493483.64 │ gg         │ 21bca206@vtcbb.edu.in  │
+│ 107    │ mansi    │ female │ 7       │ puna     │ ffa         │ 1493471.54 │ ggg        │ 21bca207@vtcbb.edu.in  │
+└────────┴──────────┴────────┴─────────┴──────────┴─────────────┴────────────┴────────────┴────────────────────────┘
+sqlite> select*from department where location="surat";
+┌─────────┬───────────┬──────────┐
+│ dept_no │ dept_name │ location │
+├─────────┼───────────┼──────────┤
+│ 2       │ sai       │ surat    │
+└─────────┴───────────┴──────────┘
+sqlite> select*from department where dept_name like "a%";
+sqlite> select*from department where dept_no between 1 and 100;
+┌─────────┬───────────┬───────────┐
+│ dept_no │ dept_name │ location  │
+├─────────┼───────────┼───────────┤
+│ 1       │ om        │ delhi     │
+│ 2       │ sai       │ surat     │
+│ 3       │ ram       │ mp        │
+│ 4       │ milan     │ ahamdabad │
+│ 5       │ denish    │ baroda    │
+│ 6       │ surat     │ bardoli   │
+└─────────┴───────────┴───────────┘
+
+sqlite> delete from department where dept_name="trg";
+sqlite> select*from department where location like "_a%";
+┌─────────┬───────────┬──────────┐
+│ dept_no │ dept_name │ location │
+├─────────┼───────────┼──────────┤
+│ 5       │ denish    │ baroda   │
+│ 6       │ surat     │ bardoli  │
+└─────────┴───────────┴──────────┘
+lite> select*from department where location="baroda" or location="surat" or location="ahamdabad";
+┌─────────┬───────────┬───────────┐
+│ dept_no │ dept_name │ location  │
+├─────────┼───────────┼───────────┤
+│ 2       │ sai       │ surat     │
+│ 4       │ milan     │ ahamdabad │
+│ 5       │ denish    │ baroda    │
+└─────────┴───────────┴───────────┘
+sqlite> select*from department where dept_name not in ("sai,ram");
+┌─────────┬───────────┬───────────┐
+│ dept_no │ dept_name │ location  │
+├─────────┼───────────┼───────────┤
+│ 1       │ om        │ delhi     │
+│ 2       │ sai       │ surat     │
+│ 3       │ ram       │ mp        │
+│ 4       │ milan     │ ahamdabad │
+│ 5       │ denish    │ baroda    │
+│ 6       │ surat     │ bardoli   │
+
+sqlite> select*from employee order by salary;
+┌────────┬──────────┬────────┬─────────┬──────────┬─────────────┬────────────┬────────────┬────────────────────────┐
+│ emp_id │ emp_name │ gender │ dept_no │ address  │ designation │   salary   │ experience │         email          │
+├────────┼──────────┼────────┼─────────┼──────────┼─────────────┼────────────┼────────────┼────────────────────────┤
+│ 103    │ ram      │ male   │ 3       │ mp       │ mba         │ 14937.45   │ bba        │ 21bca203@vtcbb.edu.in  │
+│ 105    │ denish   │ male   │ 5       │ baroda   │ fdva        │ 149343.04  │ bbb        │ 21bca205@vtcbb.edu.in  │
+│ 104    │ milan    │ male   │ 4       │ ahmdabad │ mca         │ 149344.25  │ bba        │ 21bca204@vtcbb.edu.in  │
+│ 104    │ milan    │ male   │ 4       │ ahmdabad │ mca         │ 149344.25  │ bba        │ 21bca204@vtcbb.edu.in  │
+│ 101    │ om       │ male   │ 1       │ DELHI    │ ca          │ 149381.76  │ bca        │ ommmmmm27674@gmail.com │
+│ 107    │ mansi    │ female │ 7       │ puna     │ ffa         │ 1493471.54 │ ggg        │ 21bca207@vtcbb.edu.in  │
+│ 106    │ ujvall   │ male   │ 6       │ bardoli  │ fva         │ 1493483.64 │ gg         │ 21bca206@vtcbb.edu.in  │
+│ 102    │ sai      │ male   │ 2       │ surat    │ mca         │ 1493826.07 │ bac        │ 21bca202@vtcbb.edu.in  │
+└────────┴──────────┴────────┴─────────┴──────────┴─────────────┴────────────┴────────────┴────────────────────────┘
+sqlite> select*from employee where gender="female";
+┌────────┬──────────┬────────┬─────────┬─────────┬─────────────┬────────────┬────────────┬───────────────────────┐
+│ emp_id │ emp_name │ gender │ dept_no │ address │ designation │   salary   │ experience │         email         │
+├────────┼──────────┼────────┼─────────┼─────────┼─────────────┼────────────┼────────────┼───────────────────────┤
+│ 107    │ mansi    │ female │ 7       │ puna    │ ffa         │ 1493471.54 │ ggg        │ 21bca207@vtcbb.edu.in │
+└────────┴──────────┴────────┴─────────┴─────────┴─────────────┴────────────┴────────────┴───────────────────────┘
+sqlite> select emp_name from employee;
+┌──────────┐
+│ emp_name │
+├──────────┤
+│ om       │
+│ sai      │
+│ ram      │
+│ milan    │
+│ milan    │
+│ denish   │
+│ ujvall   │
+│ mansi    │
+└──────────┘
+sqlite> select emp_name from employee where salary>=20000 and salary<=500000
+   ...> ;
+┌──────────┐
+│ emp_name │
+├──────────┤
+│ om       │
+│ milan    │
+│ milan    │
+│ denish   │
+
+sqlite> select designation,emp_name from employee where gender="female";
+┌─────────────┬──────────┐
+│ designation │ emp_name │
+├─────────────┼──────────┤
+│ ffa         │ mansi    │
+└─────────────┴──────────┘
+sqlite> select emp_name from employee where emp_name like "a%" and emp_name like "%a";
+sqlite> select min(salary)as "lowest salary"from employee;
+┌───────────────┐
+│ lowest salary │
+├───────────────┤
+│ 14937.45      │
+└───────────────┘
+
+
+qlite> update employee set salary=salary+salary*0.10;
+sqlite> select*from employee where experience="bba";
+┌────────┬──────────┬────────┬─────────┬──────────┬─────────────┬──────────────┬────────────┬───────────────────────┐
+│ emp_id │ emp_name │ gender │ dept_no │ address  │ designation │    salary    │ experience │         email         │
+├────────┼──────────┼────────┼─────────┼──────────┼─────────────┼──────────────┼────────────┼───────────────────────┤
+│ 103    │ ram      │ male   │ 3       │ mp       │ mba         │ 19881.74595  │ bba        │ 21bca203@vtcbb.edu.in │
+│ 104    │ milan    │ male   │ 4       │ ahmdabad │ mca         │ 198777.19675 │ bba        │ 21bca204@vtcbb.edu.in │
+│ 104    │ milan    │ male   │ 4       │ ahmdabad │ mca         │ 198777.19675 │ bba        │ 21bca204@vtcbb.edu.in │
+└────────┴──────────┴────────┴─────────┴────────
+
+
+
+
+sqlite> update employee set salary=salary+salary*0.10;
+sqlite> select*from employee where experience="bba";
+┌────────┬──────────┬────────┬─────────┬──────────┬─────────────┬──────────────┬────────────┬───────────────────────┐
+│ emp_id │ emp_name │ gender │ dept_no │ address  │ designation │    salary    │ experience │         email         │
+├────────┼──────────┼────────┼─────────┼──────────┼─────────────┼──────────────┼────────────┼───────────────────────┤
+│ 103    │ ram      │ male   │ 3       │ mp       │ mba         │ 19881.74595  │ bba        │ 21bca203@vtcbb.edu.in │
+│ 104    │ milan    │ male   │ 4       │ ahmdabad │ mca         │ 198777.19675 │ bba        │ 21bca204@vtcbb.edu.in │
+│ 104    │ milan    │ male   │ 4       │ ahmdabad │ mca         │ 198777.19675 │ bba        │ 21bca204@vtcbb.edu.in │
+└────────┴──────────┴────────┴─────────┴──────────┴─────────────┴──────────────┴────────────┴───────────────────────┘
+sqlite> select*from employee where experience="bca";
+┌────────┬──────────┬────────┬─────────┬─────────┬─────────────┬──────────────┬────────────┬────────────────────────┐
+│ emp_id │ emp_name │ gender │ dept_no │ address │ designation │    salary    │ experience │         email          │
+├────────┼──────────┼────────┼─────────┼─────────┼─────────────┼──────────────┼────────────┼────────────────────────┤
+│ 101    │ om       │ male   │ 1       │ DELHI   │ ca          │ 198827.12256 │ bca        │ ommmmmm27674@gmail.com │
+└────────┴──────────┴────────┴─────────┴─────────┴─────────────┴──────────────┴────────────┴────────────────────────┘
+sqlite> delete from employee where salary <100000;
+sqlite> select*from department where dept_no not in (select dept_no from employee);
+┌─────────┬───────────┬──────────┐
+│ dept_no │ dept_name │ location │
+├─────────┼───────────┼──────────┤
+│ 3       │ ram       │ mp       │
+└─────────┴───────────┴──────────┘
+sqlite>
+
